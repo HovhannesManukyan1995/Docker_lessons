@@ -1,7 +1,6 @@
 name: first pipeline
-on: [push]
+on: push
 jobs:
-     runs-on: ubuntu-latest
      steps:
-      - bash: echo 'hello world'
+       run: echo "hello world"
       
