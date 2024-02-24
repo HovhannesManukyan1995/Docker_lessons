@@ -1,6 +1,5 @@
 name: first pipeline
 jobs:
-  check-bats-version:
     runs-on: ubuntu-latest
     steps:
     - run: echo 'hello world'
