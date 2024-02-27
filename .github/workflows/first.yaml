@@ -4,6 +4,6 @@ jobs:
      my-ob:
        runs-pn: ubuntu-latest
        steps:
-           -name: gugush
-           run: echo "hello world"
+           name: gugush
+           script: echo "hello world"
       
