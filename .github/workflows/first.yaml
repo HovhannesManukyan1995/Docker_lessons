@@ -1,9 +1,7 @@
 name: first_pipeline
 on: push
 jobs:
-     my-ob:
-       runs-pn: ubuntu-latest
-       steps:
-           name: gugush
-           script: echo "hello world"
+     steps:
+       - name: Echo Hello World
+         run: echo 'hello world'
       
