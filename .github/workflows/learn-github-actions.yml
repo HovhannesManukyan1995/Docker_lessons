@@ -1,7 +1,11 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: hello
+
 on: [push]
+
 jobs:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+    - name: Echo Hello World
       run: echo 'hello world'
