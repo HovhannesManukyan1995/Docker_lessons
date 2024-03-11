@@ -1,0 +1,30 @@
+version: '2'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - '80:8080'
+      - '50000:50000'
+    environment:
+      - JENKINS_PASSWORD=bitnami
+    volumes:
+      - 'jenkins_data:/bitnami/jenkins'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+
+  agent:
+    image: ssh-python:latest
+    privileged: true
+    user: root
+    container_name: agent
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMomRxdactHauI8dzZHOel0eRYAm3I0zEVhWQKl3ixsGIJrTaAvPYGYHQr8WHZ//Pn+Y0Z1xBhRy9JbBFNThOXBB+X5XqcNVktzbV5rIyZL+B5hOW8Rb5fnOR4P5y1YdzPyBZMQlf4ILFh46k15V5r0ttEohvriKxn47NsT8fxgUcFdWPoNEIFN/566jmQfCw/6ctwQt7O/UAI+SjDbxYc9s50Bee5Sn47RT6dEbELeh4bv2pLvDxyYgTMbPM4wU0KwJqPqSMG/Ru1sYU34KFDheKfsJxVnfTbbTcYbxMTT+z8Jwc1Ec3ZCXbZVqLfQCqameD5IyCC6p8To5vPaN9lqzVw6Vf2Ko3V8XOWMyYT12sDFbOdpdqL0kBbmIvx66IZH5sH7iZUYt3d5zKKwiBfbTmmtLwDPS5ZjMnjUla6HvRZ9sp/pC8a19+dUFiZBRiYU6HVzMdUDHzb+zb0wB5cdbH+FgR3n/gz8RXjcik/2K7J/AdpSmNqu+zJruN+M+c= armen@Armen
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+
+volumes:
+  jenkins_data:
+    driver: local
+
